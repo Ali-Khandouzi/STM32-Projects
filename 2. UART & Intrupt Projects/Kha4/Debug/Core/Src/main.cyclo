@@ -1,0 +1,8 @@
+../Core/Src/main.c:49:5:main	2
+../Core/Src/main.c:78:6:printWelcomeMessage	1
+../Core/Src/main.c:85:9:readUserInput	1
+../Core/Src/main.c:93:9:processUserInput	8
+../Core/Src/main.c:122:6:SystemClock_Config	4
+../Core/Src/main.c:172:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:207:13:MX_GPIO_Init	1
+../Core/Src/main.c:247:6:Error_Handler	1

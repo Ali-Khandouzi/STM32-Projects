@@ -1,0 +1,5 @@
+../Core/Src/ringbuffer.c:4:10:RingBuffer_GetFreeSpace	3
+../Core/Src/ringbuffer.c:14:10:RingBuffer_GetDataLength	1
+../Core/Src/ringbuffer.c:19:6:RingBuffer_Init	1
+../Core/Src/ringbuffer.c:24:10:RingBuffer_Read	3
+../Core/Src/ringbuffer.c:34:9:RingBuffer_Write	4
