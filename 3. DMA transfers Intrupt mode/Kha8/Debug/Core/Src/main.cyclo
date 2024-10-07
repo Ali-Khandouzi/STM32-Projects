@@ -1,0 +1,8 @@
+../Core/Src/main.c:43:5:main	1
+../Core/Src/main.c:80:6:printWelcomeMessage	2
+../Core/Src/main.c:89:6:DMATransferComplete	2
+../Core/Src/main.c:103:6:SystemClock_Config	4
+../Core/Src/main.c:153:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:186:13:MX_DMA_Init	1
+../Core/Src/main.c:204:13:MX_GPIO_Init	1
+../Core/Src/main.c:244:6:Error_Handler	1
