@@ -29,7 +29,15 @@
 	It's a general-purpose timer that has an ETR2 pin (TIM3_ETR2). 
 	By connecting TIM3_ETR2 to the Master Clock Output(MCO) pin, we can give it an external clock. 
 	MCO pin in Nucleo L476RG corresponds to the PA8 pin, and ETR2 in all Nucleos corresponds to the PD2 pin.
-	We connect them using a jumper, shown in the Video Ex3.mp4.
+	We connect them using a jumper, shown in the Video "Ex3.mp4".
+
+	
+	Timer ex4
+	There are other ways to use external clock source for timers. With ETR2 pin, there is no need to set timer to work in slave mode.
+	But if it does so, it can be clocked by a signal connected to the ETR1 pin, by any trigger source connected to the internal lines ITR0…ITR2 (hence, the clock source
+	can be only another timer), or by an input signal connected to the timer channels TI1 and TI2,
+	which becomes TI1FP1 and TI2FP2 if the input filtering stage is activated.
+	In this examples, we rout the Master Clock Output (MCO) pin to the TI2FP2 pin to use an external clock, as shown in Video "Ex4.mp4".
 
 
 
