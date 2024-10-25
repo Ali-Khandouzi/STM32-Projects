@@ -1,0 +1,6 @@
+../Core/Src/nucleo_hal_bsp.c:15:6:Nucleo_BSP_Init	8	static
+../Core/Src/nucleo_hal_bsp.c:27:6:SystemClock_Config	240	static
+../Core/Src/nucleo_hal_bsp.c:72:6:MX_USART2_UART_Init	8	static
+../Core/Src/nucleo_hal_bsp.c:95:6:MX_GPIO_Init	40	static
+../Core/Src/nucleo_hal_bsp.c:121:6:MX_GPIO_Deinit	64	static
+../Core/Src/nucleo_hal_bsp.c:161:6:MX_DMA_Init	16	static

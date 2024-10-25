@@ -49,9 +49,23 @@
 	the Timer counter register(TIM2_CNT) when the rising edge of input signal is detected.
 	To measure the frequency, we need to connect the PA5 pin (LED2) to the PA0 (TIM2_CH1) as it shown in video "Ex6.mp4".
 
+	Timer ex7
+	This example is about output compare mode. We control Timer2 CH1 and CH2 outputs in "Output compare toggle" mode.
+	This will done by comparing the value of the channel compare register (TIMx_CCRx) and the timer counter register (TIMx_CNT).
+	When these two value matches, a specific interrupt is generated (it's enabled), This allows to control the switching frequency of each channel independently, 
+	and eventually perform phase shift between channel.
+	In this example we show how to generate two output square wave signals, one running at 25kHz and one at 12.5kHz. Shown in video "EX7.mp4."
+	
+	Timer ex8
+	Timers can also be used for Pulse-width modulation (PWM). The square waves generated until now, all have a 50% duty cycle.
+	Using PWM technique, we can generate several pulses with different duty cycles at a given frequency.
+	In this example, we use PWM to dimming LED2. We configure the first channel of timer TIM2 to work in PWM Mode 1.
+	There are two main loop in the code. The first one increments the value of the Pulse(Capture Compare Register 1 (CCR1)) up to the Period value (Auto Reload Register (ARR)) every 1ms.
+	And the second one, in the same way, decrements the Pulse field unless it reaches zero.
+	The result is shown in video "EX8.mp4."
 
-
-
+	Timer ex9
+		
 
 
 
