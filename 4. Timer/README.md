@@ -65,7 +65,18 @@
 	The result is shown in video "EX8.mp4."
 
 	Timer ex9
-		
+	In this example, we make a sine wave using PWM. This can be done by changing the output voltage(duty cycle).
+	We can generate an output waveform with a frequency, that is a fraction of the PWM frequency. We divide the sine wave into 200 of divisions and each division have a single PWM cycle.
+	A PWM pulse with 0% duty cycle will represent the min amplitude (0V), the one with 100% duty cycle will represent max amplitude(3.3V).
+	To generate a 50Hz sine wave, we have to set the prescaler on 40 based on this formula:
+	Prescaler = (80MHZ *Clock freq.)/ 50HZ * 200 divisions * 200 Pusle period = 40.
+	The DMA1_Channel4 is configured to work in circular mode, so that it automatically sets the value of the TIMx_CCRx register according to the Pulse values contained in IV vector.
+	The result shown in video "Ex9.mp4". Note that, our logic analyzer does not show the analog signals. But the PWM signal is demonstrated.
+	
+	Timer ex10
+
+
+	
 
 
 
