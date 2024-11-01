@@ -1,0 +1,6 @@
+../Core/Src/nucleo_hal_bsp.c:16:6:Nucleo_BSP_Init	1
+../Core/Src/nucleo_hal_bsp.c:28:6:SystemClock_Config	5
+../Core/Src/nucleo_hal_bsp.c:84:6:MX_USART2_UART_Init	1
+../Core/Src/nucleo_hal_bsp.c:107:6:MX_GPIO_Init	1
+../Core/Src/nucleo_hal_bsp.c:134:6:MX_GPIO_Deinit	1
+../Core/Src/nucleo_hal_bsp.c:174:6:Error_Handler	1
