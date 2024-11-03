@@ -1,0 +1,4 @@
+../Core/Src/nucleo_hal_bsp.c:10:6:Nucleo_BSP_Init	1
+../Core/Src/nucleo_hal_bsp.c:21:6:SystemClock_Config	1
+../Core/Src/nucleo_hal_bsp.c:65:6:MX_DMA_Init	1
+../Core/Src/nucleo_hal_bsp.c:83:6:MX_GPIO_Init	1

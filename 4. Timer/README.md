@@ -52,7 +52,7 @@
 	Timer ex7
 	This example is about output compare mode. We control Timer2 CH1 and CH2 outputs in "Output compare toggle" mode.
 	This will done by comparing the value of the channel compare register (TIMx_CCRx) and the timer counter register (TIMx_CNT).
-	When these two value matches, a specific interrupt is generated (it's enabled), This allows to control the switching frequency of each channel independently, 
+	When these two value matches, a specific interrupt is generated (if it's enabled), This allows to control the switching frequency of each channel independently, 
 	and eventually perform phase shift between channel.
 	In this example we show how to generate two output square wave signals, one running at 25kHz and one at 12.5kHz. Shown in video "EX7.mp4."
 	
@@ -73,7 +73,12 @@
 	The DMA1_Channel4 is configured to work in circular mode, so that it automatically sets the value of the TIMx_CCRx register according to the Pulse values contained in IV vector.
 	The result shown in video "Ex9.mp4". Note that, our logic analyzer does not show the analog signals. But the PWM signal is demonstrated.
 	
-	Timer ex10
+	Timer ex11
+	This example is about simulation of an incremental encoder by using the TIM2 in output compare mode. TIM2 OC1 and OC2 (PA0, PA1) channels are routed to
+	TIM3 TI1 and TI2 channels (PA6, PA7) using the morpho connector, and they are configured so that they generate two square wave signals having the same period but shifted 90degree in phase.
+	The TIM3 is then configured in encoder X4 mode(TIM_ENCODERMODE_TI12). The SysTick timer is used to generate the timebase: every 1s, the number of pulses is computed, together with the encoder direction. The number of RPMs is then derived, assuming an encoder that generates 4 pulses for every revolution. 
+	Finally, by pressing the USER button it is possible to change the phase shift between phase A and B: this will invert the encoder revolution.
+	The video "./Videos/Ex11.mp4" shows the result.
 
 
 	
