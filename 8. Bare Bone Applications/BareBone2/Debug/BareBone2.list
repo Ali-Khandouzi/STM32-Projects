@@ -1,0 +1,152 @@
+
+BareBone2.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000bc  08000000  08000000  00001000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  20000000  080000bc  00002000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .debug_info   00000159  00000000  00000000  00002004  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  3 .debug_abbrev 00000143  00000000  00000000  0000215d  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  4 .debug_aranges 00000030  00000000  00000000  000022a0  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  5 .debug_rnglists 0000001f  00000000  00000000  000022d0  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  6 .debug_macro  00000ae3  00000000  00000000  000022ef  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  7 .debug_line   000000ba  00000000  00000000  00002dd2  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  8 .debug_str    00002f30  00000000  00000000  00002e8c  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  9 .comment      00000043  00000000  00000000  00005dbc  2**0
+                  CONTENTS, READONLY
+ 10 .ARM.attributes 0000002e  00000000  00000000  00005dff  2**0
+                  CONTENTS, READONLY
+ 11 .debug_frame  00000074  00000000  00000000  00005e30  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+08000000 <vector_table>:
+ 8000000:	00 80 01 20 09 00 00 08                             ... ....
+
+08000008 <_start>:
+    *p++ = *from++;
+}
+
+void __attribute__ ((noreturn,weak))
+_start (void)
+{
+ 8000008:	b580      	push	{r7, lr}
+ 800000a:	b084      	sub	sp, #16
+ 800000c:	af00      	add	r7, sp, #0
+ 800000e:	4b0d      	ldr	r3, [pc, #52]	@ (8000044 <_start+0x3c>)
+ 8000010:	60fb      	str	r3, [r7, #12]
+ 8000012:	4b0d      	ldr	r3, [pc, #52]	@ (8000048 <_start+0x40>)
+ 8000014:	60bb      	str	r3, [r7, #8]
+ 8000016:	4b0d      	ldr	r3, [pc, #52]	@ (800004c <_start+0x44>)
+ 8000018:	607b      	str	r3, [r7, #4]
+  uint32_t*p = region_begin;
+ 800001a:	68bb      	ldr	r3, [r7, #8]
+ 800001c:	603b      	str	r3, [r7, #0]
+  while (p < region_end)
+ 800001e:	e007      	b.n	8000030 <_start+0x28>
+    *p++ = *from++;
+ 8000020:	68fa      	ldr	r2, [r7, #12]
+ 8000022:	1d13      	adds	r3, r2, #4
+ 8000024:	60fb      	str	r3, [r7, #12]
+ 8000026:	683b      	ldr	r3, [r7, #0]
+ 8000028:	1d19      	adds	r1, r3, #4
+ 800002a:	6039      	str	r1, [r7, #0]
+ 800002c:	6812      	ldr	r2, [r2, #0]
+ 800002e:	601a      	str	r2, [r3, #0]
+  while (p < region_end)
+ 8000030:	687a      	ldr	r2, [r7, #4]
+ 8000032:	683b      	ldr	r3, [r7, #0]
+ 8000034:	429a      	cmp	r2, r3
+ 8000036:	d8f3      	bhi.n	8000020 <_start+0x18>
+}
+ 8000038:	bf00      	nop
+	__initialize_data(&_sidata, &_sdata, &_edata);
+	main();
+ 800003a:	f000 f809 	bl	8000050 <main>
+
+	for(;;);
+ 800003e:	bf00      	nop
+ 8000040:	e7fd      	b.n	800003e <_start+0x36>
+ 8000042:	bf00      	nop
+ 8000044:	080000bc 	.word	0x080000bc
+ 8000048:	20000000 	.word	0x20000000
+ 800004c:	20000004 	.word	0x20000004
+
+08000050 <main>:
+}
+
+int main() {
+ 8000050:	b580      	push	{r7, lr}
+ 8000052:	af00      	add	r7, sp, #0
+    /* enable clock on GPIOA peripherals */
+    *RCC_AHB2ENR = 0x1;
+ 8000054:	4b0d      	ldr	r3, [pc, #52]	@ (800008c <main+0x3c>)
+ 8000056:	2201      	movs	r2, #1
+ 8000058:	601a      	str	r2, [r3, #0]
+    *GPIOA_MODER = 0x400; // Sets MODER[11:10] = 0x1
+ 800005a:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 800005e:	f44f 6280 	mov.w	r2, #1024	@ 0x400
+ 8000062:	601a      	str	r2, [r3, #0]
+
+    while(dataVar == 0x3f) {
+ 8000064:	e00b      	b.n	800007e <main+0x2e>
+      *GPIOA_ODR = 0x20;
+ 8000066:	4b0a      	ldr	r3, [pc, #40]	@ (8000090 <main+0x40>)
+ 8000068:	2220      	movs	r2, #32
+ 800006a:	601a      	str	r2, [r3, #0]
+      delay(200000);
+ 800006c:	4809      	ldr	r0, [pc, #36]	@ (8000094 <main+0x44>)
+ 800006e:	f000 f815 	bl	800009c <delay>
+      *GPIOA_ODR = 0x0;
+ 8000072:	4b07      	ldr	r3, [pc, #28]	@ (8000090 <main+0x40>)
+ 8000074:	2200      	movs	r2, #0
+ 8000076:	601a      	str	r2, [r3, #0]
+      delay(200000);
+ 8000078:	4806      	ldr	r0, [pc, #24]	@ (8000094 <main+0x44>)
+ 800007a:	f000 f80f 	bl	800009c <delay>
+    while(dataVar == 0x3f) {
+ 800007e:	4b06      	ldr	r3, [pc, #24]	@ (8000098 <main+0x48>)
+ 8000080:	681b      	ldr	r3, [r3, #0]
+ 8000082:	2b3f      	cmp	r3, #63	@ 0x3f
+ 8000084:	d0ef      	beq.n	8000066 <main+0x16>
+ 8000086:	2300      	movs	r3, #0
+   	}
+}
+ 8000088:	4618      	mov	r0, r3
+ 800008a:	bd80      	pop	{r7, pc}
+ 800008c:	4002104c 	.word	0x4002104c
+ 8000090:	48000014 	.word	0x48000014
+ 8000094:	00030d40 	.word	0x00030d40
+ 8000098:	20000000 	.word	0x20000000
+
+0800009c <delay>:
+
+void delay(unsigned long count) {
+ 800009c:	b480      	push	{r7}
+ 800009e:	b083      	sub	sp, #12
+ 80000a0:	af00      	add	r7, sp, #0
+ 80000a2:	6078      	str	r0, [r7, #4]
+    while(count--);
+ 80000a4:	bf00      	nop
+ 80000a6:	687b      	ldr	r3, [r7, #4]
+ 80000a8:	1e5a      	subs	r2, r3, #1
+ 80000aa:	607a      	str	r2, [r7, #4]
+ 80000ac:	2b00      	cmp	r3, #0
+ 80000ae:	d1fa      	bne.n	80000a6 <delay+0xa>
+}
+ 80000b0:	bf00      	nop
+ 80000b2:	bf00      	nop
+ 80000b4:	370c      	adds	r7, #12
+ 80000b6:	46bd      	mov	sp, r7
+ 80000b8:	bc80      	pop	{r7}
+ 80000ba:	4770      	bx	lr

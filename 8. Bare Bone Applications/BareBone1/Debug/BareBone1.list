@@ -1,0 +1,100 @@
+
+BareBone1.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000008  08000000  08000000  00001000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text.main    0000003c  08000008  08000008  00001008  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .text.delay   00000020  08000044  08000044  00001044  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  3 .debug_info   000000ac  00000000  00000000  00001064  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  4 .debug_abbrev 000000b2  00000000  00000000  00001110  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  5 .debug_aranges 00000028  00000000  00000000  000011c2  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  6 .debug_rnglists 00000019  00000000  00000000  000011ea  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  7 .debug_macro  00000ae3  00000000  00000000  00001203  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  8 .debug_line   0000009d  00000000  00000000  00001ce6  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  9 .debug_str    00002edc  00000000  00000000  00001d83  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 10 .comment      00000043  00000000  00000000  00004c5f  2**0
+                  CONTENTS, READONLY
+ 11 .ARM.attributes 0000002e  00000000  00000000  00004ca2  2**0
+                  CONTENTS, READONLY
+ 12 .debug_frame  00000054  00000000  00000000  00004cd0  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text.main:
+
+08000008 <main>:
+uint32_t *vector_table[] __attribute__((section(".isr_vector"))) = {
+    (uint32_t *)SRAM_END,   // initial stack pointer
+    (uint32_t *)main        // main as Reset_Handler
+};
+
+int main() {
+ 8000008:	b580      	push	{r7, lr}
+ 800000a:	af00      	add	r7, sp, #0
+    /* enable clock on GPIOA peripherals */
+    *RCC_AHB2ENR = 0x1;
+ 800000c:	4b0a      	ldr	r3, [pc, #40]	@ (8000038 <main+0x30>)
+ 800000e:	2201      	movs	r2, #1
+ 8000010:	601a      	str	r2, [r3, #0]
+    *GPIOA_MODER = 0x400; // Sets MODER[11:10] = 0x1
+ 8000012:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000016:	f44f 6280 	mov.w	r2, #1024	@ 0x400
+ 800001a:	601a      	str	r2, [r3, #0]
+
+    while(1) {
+    	*GPIOA_ODR = 0x20;
+ 800001c:	4b07      	ldr	r3, [pc, #28]	@ (800003c <main+0x34>)
+ 800001e:	2220      	movs	r2, #32
+ 8000020:	601a      	str	r2, [r3, #0]
+        delay(100000);
+ 8000022:	4807      	ldr	r0, [pc, #28]	@ (8000040 <main+0x38>)
+ 8000024:	f000 f80e 	bl	8000044 <delay>
+    	*GPIOA_ODR = 0x0;
+ 8000028:	4b04      	ldr	r3, [pc, #16]	@ (800003c <main+0x34>)
+ 800002a:	2200      	movs	r2, #0
+ 800002c:	601a      	str	r2, [r3, #0]
+        delay(100000);
+ 800002e:	4804      	ldr	r0, [pc, #16]	@ (8000040 <main+0x38>)
+ 8000030:	f000 f808 	bl	8000044 <delay>
+    	*GPIOA_ODR = 0x20;
+ 8000034:	bf00      	nop
+ 8000036:	e7f1      	b.n	800001c <main+0x14>
+ 8000038:	4002104c 	.word	0x4002104c
+ 800003c:	48000014 	.word	0x48000014
+ 8000040:	000186a0 	.word	0x000186a0
+
+Disassembly of section .text.delay:
+
+08000044 <delay>:
+    }
+}
+
+void delay(uint32_t count) {
+ 8000044:	b480      	push	{r7}
+ 8000046:	b083      	sub	sp, #12
+ 8000048:	af00      	add	r7, sp, #0
+ 800004a:	6078      	str	r0, [r7, #4]
+    while(count--);
+ 800004c:	bf00      	nop
+ 800004e:	687b      	ldr	r3, [r7, #4]
+ 8000050:	1e5a      	subs	r2, r3, #1
+ 8000052:	607a      	str	r2, [r7, #4]
+ 8000054:	2b00      	cmp	r3, #0
+ 8000056:	d1fa      	bne.n	800004e <delay+0xa>
+}
+ 8000058:	bf00      	nop
+ 800005a:	bf00      	nop
+ 800005c:	370c      	adds	r7, #12
+ 800005e:	46bd      	mov	sp, r7
+ 8000060:	bc80      	pop	{r7}
+ 8000062:	4770      	bx	lr
