@@ -1,9 +1,12 @@
 /*
  * main.c
  *
- *  Created on: Nov 9, 2024
- *      Author: Jaam-eJam
+ *  Created on: Nov 19, 2024
+ *      Author: Ali Khandouzi
  */
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 typedef unsigned long uint32_t;
 
 /* memory and peripheral start addresses */
@@ -24,8 +27,8 @@ typedef unsigned long uint32_t;
 #define GPIOA_MODER     ((uint32_t*)(GPIOA_BASE + 0x00))
 #define GPIOA_ODR       ((uint32_t*)(GPIOA_BASE + 0x14))
 
-
 /* User functions */
+void *_sbrk(int incr);
 void _start (void);
 int main(void);
 void delay(uint32_t count);
@@ -43,9 +46,10 @@ extern uint32_t _sidata;
 extern uint32_t _sdata;
 // End address for the .data section; defined in linker script
 extern uint32_t _edata;
-
-
-volatile uint32_t dataVar = 0x3f;
+// Begin address for the .bss section; defined in linker script
+extern uint32_t _sbss;
+// End address for the .bss section; defined in linker script
+extern uint32_t _ebss;
 
 inline void
 __attribute__((always_inline))
@@ -53,26 +57,67 @@ __initialize_data (uint32_t* flash_begin, uint32_t* data_begin, uint32_t* data_e
 {
   // Iterate and copy word by word.
   // It is assumed that the pointers are word aligned.
-  uint32_t*p = data_begin;
+  uint32_t *p = data_begin;
   while (p < data_end)
     *p++ = *flash_begin++;
+}
+
+inline void
+__attribute__((always_inline))
+__initialize_bss (uint32_t* bss_begin, uint32_t* bss_end)
+{
+  // Iterate and copy word by word.
+  // It is assumed that the pointers are word aligned.
+  uint32_t *p = bss_begin;
+  while (p < bss_end)
+    *p++ = 0;
 }
 
 void __attribute__ ((noreturn,weak))
 _start (void)
 {
 	__initialize_data(&_sidata, &_sdata, &_edata);
+	__initialize_bss(&_sbss, &_ebss);
 	main();
 
 	for(;;);
 }
+
+void *_sbrk(int incr) {
+	extern uint32_t _end_static; 	/* Defined by the linker */
+	extern uint32_t _Heap_Limit;
+
+	static uint32_t *heap_end;
+	uint32_t *prev_heap_end;
+
+	if (heap_end == 0) {
+		heap_end = &_end_static;
+	}
+	prev_heap_end = heap_end;
+
+#ifdef __ARM_ARCH_6M__ //If we are on a Cortex-M0/0+ MCU
+	incr = (incr + 0x3) & (0xFFFFFFFC); /* This ensure that memory chunks are always multiple of 4 */
+#endif
+
+	if (heap_end + incr > &_Heap_Limit) {
+		asm("BKPT");
+	}
+
+	heap_end += incr;
+	return (void*) prev_heap_end;
+}
+
+const char msg[] = "Hello World!";
 
 int main() {
     /* enable clock on GPIOA peripherals */
     *RCC_AHB2ENR = 0x1;
     *GPIOA_MODER = 0x400; // Sets MODER[11:10] = 0x1
 
-    while(dataVar == 0x3f) {
+    char *heapMsg = (char*)malloc(sizeof(char)*strlen(msg));
+    strcpy(heapMsg, msg);
+
+    while(strcmp(heapMsg, msg) == 0) {
       *GPIOA_ODR = 0x20;
       delay(200000);
       *GPIOA_ODR = 0x0;
@@ -83,4 +128,3 @@ int main() {
 void delay(unsigned long count) {
     while(count--);
 }
-

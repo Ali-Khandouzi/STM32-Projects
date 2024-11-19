@@ -1,0 +1,180 @@
+Archive member included to satisfy reference by file (symbol)
+
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+                              ./main.o (__aeabi_f2d)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+                              ./main.o (__aeabi_dcmpge)
+
+Discarded input sections
+
+ .group         0x00000000        0xc ./main.o
+ .text          0x00000000        0x0 ./main.o
+ .data          0x00000000        0x0 ./main.o
+ .bss           0x00000000        0x0 ./main.o
+ .rodata.msg    0x00000000        0xd ./main.o
+ .rodata.vals   0x00000000        0xc ./main.o
+ .data          0x00000000        0x0 C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .bss           0x00000000        0x0 C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .data          0x00000000        0x0 C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .bss           0x00000000        0x0 C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00100000         xr
+SRAM             0x20000000         0x00018000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD ./main.o
+START GROUP
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libc_nano.a
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libm.a
+END GROUP
+START GROUP
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libc_nano.a
+END GROUP
+START GROUP
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libc_nano.a
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libnosys.a
+END GROUP
+START GROUP
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libc_nano.a
+LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libnosys.a
+END GROUP
+
+.text           0x08000000      0x588
+ *(.isr_vector)
+ .isr_vector    0x08000000        0x8 ./main.o
+                0x08000000                vector_table
+ *(.text .text*)
+ .text._start   0x08000008       0x70 ./main.o
+                0x08000008                _start
+ .text.main     0x08000078       0x68 ./main.o
+                0x08000078                main
+ .text.delay    0x080000e0       0x20 ./main.o
+                0x080000e0                delay
+ .text          0x08000100      0x378 C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+                0x08000100                __aeabi_drsub
+                0x08000108                __aeabi_dsub
+                0x08000108                __subdf3
+                0x0800010c                __aeabi_dadd
+                0x0800010c                __adddf3
+                0x08000384                __floatunsidf
+                0x08000384                __aeabi_ui2d
+                0x080003a4                __floatsidf
+                0x080003a4                __aeabi_i2d
+                0x080003c8                __aeabi_f2d
+                0x080003c8                __extendsfdf2
+                0x0800040c                __floatundidf
+                0x0800040c                __aeabi_ul2d
+                0x0800041c                __floatdidf
+                0x0800041c                __aeabi_l2d
+ .text          0x08000478      0x110 C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+                0x08000478                __gtdf2
+                0x08000478                __gedf2
+                0x08000480                __ltdf2
+                0x08000480                __ledf2
+                0x08000488                __nedf2
+                0x08000488                __eqdf2
+                0x08000488                __cmpdf2
+                0x08000504                __aeabi_cdrcmple
+                0x08000514                __aeabi_cdcmpeq
+                0x08000514                __aeabi_cdcmple
+                0x08000524                __aeabi_dcmpeq
+                0x08000538                __aeabi_dcmplt
+                0x0800054c                __aeabi_dcmple
+                0x08000560                __aeabi_dcmpge
+                0x08000574                __aeabi_dcmpgt
+ *(.isr_vector)
+                0x08000588                        _sidata = LOADADDR (.data)
+
+.glue_7         0x08000588        0x0
+ .glue_7        0x08000588        0x0 linker stubs
+
+.glue_7t        0x08000588        0x0
+ .glue_7t       0x08000588        0x0 linker stubs
+
+.vfp11_veneer   0x08000588        0x0
+ .vfp11_veneer  0x08000588        0x0 linker stubs
+
+.v4_bx          0x08000588        0x0
+ .v4_bx         0x08000588        0x0 linker stubs
+
+.iplt           0x08000588        0x0
+ .iplt          0x08000588        0x0 ./main.o
+
+.rel.dyn        0x08000588        0x0
+ .rel.iplt      0x08000588        0x0 ./main.o
+
+.data           0x20000000        0x0 load address 0x08000588
+                0x20000000                        _sdata = .
+ *(.data)
+ *(.data*)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _edata = .
+
+.igot.plt       0x20000000        0x0 load address 0x08000588
+ .igot.plt      0x20000000        0x0 ./main.o
+
+.bss            0x20000000        0x0 load address 0x08000588
+                0x20000000                        _sbss = .
+ *(.bss)
+ *(.bss*)
+ *(COMMON)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _ebss = .
+
+.rodata
+ *(.rodata)
+ *(.rodata*)
+OUTPUT(BareBone4.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x21a
+ .debug_info    0x00000000      0x21a ./main.o
+
+.debug_abbrev   0x00000000      0x17d
+ .debug_abbrev  0x00000000      0x17d ./main.o
+
+.debug_aranges  0x00000000       0x30
+ .debug_aranges
+                0x00000000       0x30 ./main.o
+
+.debug_rnglists
+                0x00000000       0x1f
+ .debug_rnglists
+                0x00000000       0x1f ./main.o
+
+.debug_macro    0x00000000      0xae3
+ .debug_macro   0x00000000       0x4d ./main.o
+ .debug_macro   0x0000004d      0xa96 ./main.o
+
+.debug_line     0x00000000       0xd0
+ .debug_line    0x00000000       0xd0 ./main.o
+
+.debug_str      0x00000000     0x2f65
+ .debug_str     0x00000000     0x2f65 ./main.o
+                               0x2f89 (size before relaxing)
+
+.comment        0x00000000       0x43
+ .comment       0x00000000       0x43 ./main.o
+                                 0x44 (size before relaxing)
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x2e ./main.o
+ .ARM.attributes
+                0x0000002e       0x1e C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x0000004c       0x1e C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)
+
+.debug_frame    0x00000000      0x1e4
+ .debug_frame   0x00000000       0x74 ./main.o
+ .debug_frame   0x00000074       0xac C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x00000120       0xc4 C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m/nofp\libgcc.a(_arm_cmpdf2.o)

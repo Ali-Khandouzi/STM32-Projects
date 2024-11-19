@@ -1,0 +1,4 @@
+../main.c:77:1:_start	3
+../main.c:86:7:_sbrk	3
+../main.c:112:5:main	2
+../main.c:128:6:delay	2

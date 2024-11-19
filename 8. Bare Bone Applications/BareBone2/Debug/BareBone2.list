@@ -19,11 +19,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
   7 .debug_line   000000ba  00000000  00000000  00002dd2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  8 .debug_str    00002f30  00000000  00000000  00002e8c  2**0
+  8 .debug_str    00002f33  00000000  00000000  00002e8c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .comment      00000043  00000000  00000000  00005dbc  2**0
+  9 .comment      00000043  00000000  00000000  00005dbf  2**0
                   CONTENTS, READONLY
- 10 .ARM.attributes 0000002e  00000000  00000000  00005dff  2**0
+ 10 .ARM.attributes 0000002e  00000000  00000000  00005e02  2**0
                   CONTENTS, READONLY
  11 .debug_frame  00000074  00000000  00000000  00005e30  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -34,7 +34,7 @@ Disassembly of section .text:
  8000000:	00 80 01 20 09 00 00 08                             ... ....
 
 08000008 <_start>:
-    *p++ = *from++;
+    *p++ = *flash_begin++;
 }
 
 void __attribute__ ((noreturn,weak))
@@ -49,12 +49,12 @@ _start (void)
  8000014:	60bb      	str	r3, [r7, #8]
  8000016:	4b0d      	ldr	r3, [pc, #52]	@ (800004c <_start+0x44>)
  8000018:	607b      	str	r3, [r7, #4]
-  uint32_t*p = region_begin;
+  uint32_t*p = data_begin;
  800001a:	68bb      	ldr	r3, [r7, #8]
  800001c:	603b      	str	r3, [r7, #0]
-  while (p < region_end)
+  while (p < data_end)
  800001e:	e007      	b.n	8000030 <_start+0x28>
-    *p++ = *from++;
+    *p++ = *flash_begin++;
  8000020:	68fa      	ldr	r2, [r7, #12]
  8000022:	1d13      	adds	r3, r2, #4
  8000024:	60fb      	str	r3, [r7, #12]
@@ -63,7 +63,7 @@ _start (void)
  800002a:	6039      	str	r1, [r7, #0]
  800002c:	6812      	ldr	r2, [r2, #0]
  800002e:	601a      	str	r2, [r3, #0]
-  while (p < region_end)
+  while (p < data_end)
  8000030:	687a      	ldr	r2, [r7, #4]
  8000032:	683b      	ldr	r3, [r7, #0]
  8000034:	429a      	cmp	r2, r3

@@ -5,6 +5,7 @@ Discarded input sections
  .text          0x00000000        0x0 ./main.o
  .data          0x00000000        0x0 ./main.o
  .bss           0x00000000        0x0 ./main.o
+ .data.dataVar  0x00000000        0x4 ./main.o
 
 Memory Configuration
 
@@ -35,59 +36,65 @@ LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libnosys.a
 END GROUP
 
-.text           0x08000000       0xbc
+.text           0x08000000       0xe4
  *(.isr_vector)
  .isr_vector    0x08000000        0x8 ./main.o
                 0x08000000                vector_table
- *(.text)
- *(.text*)
- .text._start   0x08000008       0x48 ./main.o
+ *(.text .text*)
+ .text._start   0x08000008       0x70 ./main.o
                 0x08000008                _start
- .text.main     0x08000050       0x4c ./main.o
-                0x08000050                main
- .text.delay    0x0800009c       0x20 ./main.o
-                0x0800009c                delay
+ .text.main     0x08000078       0x4c ./main.o
+                0x08000078                main
+ .text.delay    0x080000c4       0x20 ./main.o
+                0x080000c4                delay
  *(.isr_vector)
-                0x080000bc                        _sidata = LOADADDR (.data)
+                0x080000e4                        _sidata = LOADADDR (.data)
 
-.glue_7         0x080000bc        0x0
- .glue_7        0x080000bc        0x0 linker stubs
+.glue_7         0x080000e4        0x0
+ .glue_7        0x080000e4        0x0 linker stubs
 
-.glue_7t        0x080000bc        0x0
- .glue_7t       0x080000bc        0x0 linker stubs
+.glue_7t        0x080000e4        0x0
+ .glue_7t       0x080000e4        0x0 linker stubs
 
-.vfp11_veneer   0x080000bc        0x0
- .vfp11_veneer  0x080000bc        0x0 linker stubs
+.vfp11_veneer   0x080000e4        0x0
+ .vfp11_veneer  0x080000e4        0x0 linker stubs
 
-.v4_bx          0x080000bc        0x0
- .v4_bx         0x080000bc        0x0 linker stubs
+.v4_bx          0x080000e4        0x0
+ .v4_bx         0x080000e4        0x0 linker stubs
 
-.iplt           0x080000bc        0x0
- .iplt          0x080000bc        0x0 ./main.o
+.iplt           0x080000e4        0x0
+ .iplt          0x080000e4        0x0 ./main.o
 
-.rel.dyn        0x080000bc        0x0
- .rel.iplt      0x080000bc        0x0 ./main.o
+.rel.dyn        0x080000e4        0x0
+ .rel.iplt      0x080000e4        0x0 ./main.o
 
-.data           0x20000000        0x4 load address 0x080000bc
-                0x20000000                        . = ALIGN (0x4)
+.data           0x20000000        0x0 load address 0x080000e4
                 0x20000000                        _sdata = .
  *(.data)
  *(.data*)
- .data.dataVar  0x20000000        0x4 ./main.o
-                0x20000000                dataVar
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _edata = .
+
+.igot.plt       0x20000000        0x0 load address 0x080000e4
+ .igot.plt      0x20000000        0x0 ./main.o
+
+.bss            0x20000000        0x4 load address 0x080000e4
+                0x20000000                        _sbss = .
+ *(.bss)
+ *(.bss*)
+ .bss.bssVar    0x20000000        0x4 ./main.o
+                0x20000000                bssVar
+ *(COMMON)
                 0x20000004                        . = ALIGN (0x4)
-                0x20000004                        _edata = .
-OUTPUT(BareBone2.elf elf32-littlearm)
+                0x20000004                        _ebss = .
+OUTPUT(BareBone3.elf elf32-littlearm)
 LOAD linker stubs
 
-.igot.plt       0x20000004        0x0 load address 0x080000c0
- .igot.plt      0x20000004        0x0 ./main.o
+.debug_info     0x00000000      0x1d8
+ .debug_info    0x00000000      0x1d8 ./main.o
 
-.debug_info     0x00000000      0x159
- .debug_info    0x00000000      0x159 ./main.o
-
-.debug_abbrev   0x00000000      0x143
- .debug_abbrev  0x00000000      0x143 ./main.o
+.debug_abbrev   0x00000000      0x16c
+ .debug_abbrev  0x00000000      0x16c ./main.o
 
 .debug_aranges  0x00000000       0x30
  .debug_aranges
@@ -102,12 +109,12 @@ LOAD linker stubs
  .debug_macro   0x00000000       0x4d ./main.o
  .debug_macro   0x0000004d      0xa96 ./main.o
 
-.debug_line     0x00000000       0xba
- .debug_line    0x00000000       0xba ./main.o
+.debug_line     0x00000000       0xcd
+ .debug_line    0x00000000       0xcd ./main.o
 
-.debug_str      0x00000000     0x2f33
- .debug_str     0x00000000     0x2f33 ./main.o
-                               0x2f52 (size before relaxing)
+.debug_str      0x00000000     0x2f69
+ .debug_str     0x00000000     0x2f69 ./main.o
+                               0x2f88 (size before relaxing)
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 ./main.o

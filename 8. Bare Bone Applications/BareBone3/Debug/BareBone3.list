@@ -1,0 +1,181 @@
+
+BareBone3.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000e4  08000000  08000000  00001000  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  20000000  20000000  000010e4  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  20000000  080000e4  00002000  2**2
+                  ALLOC
+  3 .debug_info   000001d8  00000000  00000000  000010e4  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  4 .debug_abbrev 0000016c  00000000  00000000  000012bc  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  5 .debug_aranges 00000030  00000000  00000000  00001428  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  6 .debug_rnglists 0000001f  00000000  00000000  00001458  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  7 .debug_macro  00000ae3  00000000  00000000  00001477  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  8 .debug_line   000000cd  00000000  00000000  00001f5a  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  9 .debug_str    00002f69  00000000  00000000  00002027  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 10 .comment      00000043  00000000  00000000  00004f90  2**0
+                  CONTENTS, READONLY
+ 11 .ARM.attributes 0000002e  00000000  00000000  00004fd3  2**0
+                  CONTENTS, READONLY
+ 12 .debug_frame  00000074  00000000  00000000  00005004  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+08000000 <vector_table>:
+ 8000000:	00 80 01 20 09 00 00 08                             ... ....
+
+08000008 <_start>:
+    *p++ = 0;
+}
+
+void __attribute__ ((noreturn,weak))
+_start (void)
+{
+ 8000008:	b580      	push	{r7, lr}
+ 800000a:	b088      	sub	sp, #32
+ 800000c:	af00      	add	r7, sp, #0
+ 800000e:	4b15      	ldr	r3, [pc, #84]	@ (8000064 <_start+0x5c>)
+ 8000010:	613b      	str	r3, [r7, #16]
+ 8000012:	4b15      	ldr	r3, [pc, #84]	@ (8000068 <_start+0x60>)
+ 8000014:	60fb      	str	r3, [r7, #12]
+ 8000016:	4b15      	ldr	r3, [pc, #84]	@ (800006c <_start+0x64>)
+ 8000018:	60bb      	str	r3, [r7, #8]
+  uint32_t *p = data_begin;
+ 800001a:	68fb      	ldr	r3, [r7, #12]
+ 800001c:	607b      	str	r3, [r7, #4]
+  while (p < data_end)
+ 800001e:	e007      	b.n	8000030 <_start+0x28>
+    *p++ = *flash_begin++;
+ 8000020:	693a      	ldr	r2, [r7, #16]
+ 8000022:	1d13      	adds	r3, r2, #4
+ 8000024:	613b      	str	r3, [r7, #16]
+ 8000026:	687b      	ldr	r3, [r7, #4]
+ 8000028:	1d19      	adds	r1, r3, #4
+ 800002a:	6079      	str	r1, [r7, #4]
+ 800002c:	6812      	ldr	r2, [r2, #0]
+ 800002e:	601a      	str	r2, [r3, #0]
+  while (p < data_end)
+ 8000030:	68ba      	ldr	r2, [r7, #8]
+ 8000032:	687b      	ldr	r3, [r7, #4]
+ 8000034:	429a      	cmp	r2, r3
+ 8000036:	d8f3      	bhi.n	8000020 <_start+0x18>
+}
+ 8000038:	bf00      	nop
+ 800003a:	4b0d      	ldr	r3, [pc, #52]	@ (8000070 <_start+0x68>)
+ 800003c:	61fb      	str	r3, [r7, #28]
+ 800003e:	4b0d      	ldr	r3, [pc, #52]	@ (8000074 <_start+0x6c>)
+ 8000040:	61bb      	str	r3, [r7, #24]
+  uint32_t *p = bss_begin;
+ 8000042:	69fb      	ldr	r3, [r7, #28]
+ 8000044:	617b      	str	r3, [r7, #20]
+  while (p < bss_end)
+ 8000046:	e004      	b.n	8000052 <_start+0x4a>
+    *p++ = 0;
+ 8000048:	697b      	ldr	r3, [r7, #20]
+ 800004a:	1d1a      	adds	r2, r3, #4
+ 800004c:	617a      	str	r2, [r7, #20]
+ 800004e:	2200      	movs	r2, #0
+ 8000050:	601a      	str	r2, [r3, #0]
+  while (p < bss_end)
+ 8000052:	69ba      	ldr	r2, [r7, #24]
+ 8000054:	697b      	ldr	r3, [r7, #20]
+ 8000056:	429a      	cmp	r2, r3
+ 8000058:	d8f6      	bhi.n	8000048 <_start+0x40>
+}
+ 800005a:	bf00      	nop
+	__initialize_data(&_sidata, &_sdata, &_edata);
+	__initialize_bss(&_sbss, &_ebss);
+	main();
+ 800005c:	f000 f80c 	bl	8000078 <main>
+
+	for(;;);
+ 8000060:	bf00      	nop
+ 8000062:	e7fd      	b.n	8000060 <_start+0x58>
+ 8000064:	080000e4 	.word	0x080000e4
+ 8000068:	20000000 	.word	0x20000000
+ 800006c:	20000000 	.word	0x20000000
+ 8000070:	20000000 	.word	0x20000000
+ 8000074:	20000004 	.word	0x20000004
+
+08000078 <main>:
+}
+
+volatile uint32_t dataVar = 0x3f;
+volatile uint32_t bssVar;
+
+int main() {
+ 8000078:	b580      	push	{r7, lr}
+ 800007a:	af00      	add	r7, sp, #0
+    /* enable clock on GPIOA peripherals */
+    *RCC_AHB2ENR = 0x1;
+ 800007c:	4b0d      	ldr	r3, [pc, #52]	@ (80000b4 <main+0x3c>)
+ 800007e:	2201      	movs	r2, #1
+ 8000080:	601a      	str	r2, [r3, #0]
+    *GPIOA_MODER = 0x400; // Sets MODER[11:10] = 0x1
+ 8000082:	f04f 4390 	mov.w	r3, #1207959552	@ 0x48000000
+ 8000086:	f44f 6280 	mov.w	r2, #1024	@ 0x400
+ 800008a:	601a      	str	r2, [r3, #0]
+
+    while(bssVar == 0) {
+ 800008c:	e00b      	b.n	80000a6 <main+0x2e>
+      *GPIOA_ODR = 0x20;
+ 800008e:	4b0a      	ldr	r3, [pc, #40]	@ (80000b8 <main+0x40>)
+ 8000090:	2220      	movs	r2, #32
+ 8000092:	601a      	str	r2, [r3, #0]
+      delay(200000);
+ 8000094:	4809      	ldr	r0, [pc, #36]	@ (80000bc <main+0x44>)
+ 8000096:	f000 f815 	bl	80000c4 <delay>
+      *GPIOA_ODR = 0x0;
+ 800009a:	4b07      	ldr	r3, [pc, #28]	@ (80000b8 <main+0x40>)
+ 800009c:	2200      	movs	r2, #0
+ 800009e:	601a      	str	r2, [r3, #0]
+      delay(200000);
+ 80000a0:	4806      	ldr	r0, [pc, #24]	@ (80000bc <main+0x44>)
+ 80000a2:	f000 f80f 	bl	80000c4 <delay>
+    while(bssVar == 0) {
+ 80000a6:	4b06      	ldr	r3, [pc, #24]	@ (80000c0 <main+0x48>)
+ 80000a8:	681b      	ldr	r3, [r3, #0]
+ 80000aa:	2b00      	cmp	r3, #0
+ 80000ac:	d0ef      	beq.n	800008e <main+0x16>
+ 80000ae:	2300      	movs	r3, #0
+   	}
+}
+ 80000b0:	4618      	mov	r0, r3
+ 80000b2:	bd80      	pop	{r7, pc}
+ 80000b4:	4002104c 	.word	0x4002104c
+ 80000b8:	48000014 	.word	0x48000014
+ 80000bc:	00030d40 	.word	0x00030d40
+ 80000c0:	20000000 	.word	0x20000000
+
+080000c4 <delay>:
+
+void delay(unsigned long count) {
+ 80000c4:	b480      	push	{r7}
+ 80000c6:	b083      	sub	sp, #12
+ 80000c8:	af00      	add	r7, sp, #0
+ 80000ca:	6078      	str	r0, [r7, #4]
+    while(count--);
+ 80000cc:	bf00      	nop
+ 80000ce:	687b      	ldr	r3, [r7, #4]
+ 80000d0:	1e5a      	subs	r2, r3, #1
+ 80000d2:	607a      	str	r2, [r7, #4]
+ 80000d4:	2b00      	cmp	r3, #0
+ 80000d6:	d1fa      	bne.n	80000ce <delay+0xa>
+}
+ 80000d8:	bf00      	nop
+ 80000da:	bf00      	nop
+ 80000dc:	370c      	adds	r7, #12
+ 80000de:	46bd      	mov	sp, r7
+ 80000e0:	bc80      	pop	{r7}
+ 80000e2:	4770      	bx	lr
