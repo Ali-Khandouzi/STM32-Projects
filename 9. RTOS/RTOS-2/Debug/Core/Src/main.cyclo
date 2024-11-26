@@ -1,0 +1,8 @@
+../Core/Src/main.c:50:5:main	1
+../Core/Src/main.c:74:6:blinkThread	1
+../Core/Src/main.c:81:6:UARTThread	1
+../Core/Src/main.c:90:6:SystemClock_Config	4
+../Core/Src/main.c:140:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:175:13:MX_GPIO_Init	1
+../Core/Src/main.c:209:6:vApplicationStackOverflowHook	1
+../Core/Src/main.c:219:6:Error_Handler	1
