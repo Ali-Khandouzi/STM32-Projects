@@ -15,16 +15,34 @@
 	.data section also defined and placed inside the SRAM memory.
 	
 	BareBone2
-	This is almost the same as previous example. But this time we use a global initialized variable, dataVar to start the blinking loop. If we only define the dataVar and use it in while loop, the board doesn't blinking.
-	This is because of the dataVar is a global variable and needs to initialize it by a specific initialization function.
-	Local variables are initialize during the calling process of their functions. But for the global variables, we need to copy the content of the flash region containing the initialization values to the SRAM region dedicated to global initialized variables.
-	Before we can do that, we need to instruct LD to store the initialization values nside a specific region of the flash memory(LMA). Then we should pass the start and the end of .data section in SRAM to the __initialize_data() function.
+	This is almost the same as the previous example. But this time we use a global initialized variable, dataVar to start the blinking loop. If we only define the dataVar and use it in a while loop, the board doesn't blink.
+	This is because the dataVar is a global variable and needs to be initialized by a specific initialization function.
+	Local variables are initialized during the calling process of their functions. But for the global variables, we need to copy the content of the flash region containing the initialization values to the SRAM region dedicated to global initialized variables.
+	Before we can do that, we need to instruct LD to store the initialization values inside a specific region of the flash memory(LMA). Then we should pass the start and the end of the .data section in SRAM to the __initialize_data() function.
 	Also, we need to pass the starting location where initialization values are stored in the flash memory to the same function.
 	
 	BareBone3
-	Samething goes for the .bss section, which is reserved to uninitialized variables. the content of .bss must be initialized to 0.
-	The difference with .data section is that the .bss does not have a corresponding flash region containing all zeros.
-	Besides of the linker script, The code also should contain the bss initialization routine.
+	The same goes for the .bss section, which is reserved for uninitialized variables. the content of .bss must be initialized to 0.
+	The difference with the .data section is that the .bss does not have a corresponding flash region containing all zeros.
+	Besides the linker script, the code should contain the bss initialization routine.
 
 	BareBone4
-		
+	In case we wanted to use constant data such as strings and numeric constants or arrays, these datas should placed in flash memory(internal or external through the Quad-SPI) to save SRAM space.
+	This can be achieved defining the .rodata section inside the linker script.
+
+	BareBone5
+	In case we need to allocate dynamically some portions of the memory, one way is the use of malloc() routine.
+	We define a pointer to a memory region that dynamically allocated by malloc(). Then, we simply copy the content of the msg string and check if both strings are equal. If so, the LD2 LED starts blinking.
+	Since the malloc() relies on the _sbrk() routine, we shoulf implement that too.
+	The _sbrk() is a routine that accepts the amount of bytes to allocate inside the heap memory and returns the pointer to the start of this contiguous “chunk” of memory.
+	We should define the end of .bss section, the dimension of heap and the final address of heap memory inside the linker script.
+	Since MCUs have limited memory resources and it is easy to exceed the maximum SRAM memory, we should use the linker script also to add a sort of “static” checking about the maximum memory usage.
+	This is done by defining a minimum size of stack inside the linker script. Also, using the location counter operator (“.”) we increment the size of this section so that it has a dimension equal
+	to the maximum heap size and the “estimated” minimum stack size. 
+
+
+
+
+
+
+
