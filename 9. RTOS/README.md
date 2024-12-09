@@ -33,6 +33,11 @@
 	The thread blinkThread() is placed in blocked state until the flag FLAG_LED_BLINK is set by the delayThread(), which is by default every 500ms causing the LD2 LED to blink.
 	But, when the USER BUTTON is pressed, the corresponding EXTI callback sets the flag FLAG_CHANGE_FREQUENCY, causing the delay variable to be decremented by determined steps and increasing the blinking frequency.
 	The result is shown in "./Videos/RTOS-5.mp4".
+	
+	RTOS-6
+	In this example, we made the famous blink application using a software timer.
+	Software timers are the way an RTOS provides to schedule the execution of routines on a time-basis.
+	There is no need to specific hardware support for software timers, except for the timer used as tick generator for the OS.
 
 	
 
