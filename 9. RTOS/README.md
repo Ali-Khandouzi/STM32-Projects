@@ -29,7 +29,11 @@
 	This will cause the LD2 LED to blink at a 2Hz rate.
 
 	RTOS-5
-	
+	In this example, we're using Event Flags to trigger execution states between threads (also possible between ISR and threads).
+	The thread blinkThread() is placed in blocked state until the flag FLAG_LED_BLINK is set by the delayThread(), which is by default every 500ms causing the LD2 LED to blink.
+	But, when the USER BUTTON is pressed, the corresponding EXTI callback sets the flag FLAG_CHANGE_FREQUENCY, causing the delay variable to be decremented by determined steps and increasing the blinking frequency.
+	The result is shown in "./Videos/RTOS-5.mp4".
+
 	
 
 
