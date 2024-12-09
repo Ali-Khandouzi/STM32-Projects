@@ -1,0 +1,9 @@
+../Core/Src/main.c:63:5:main	1
+../Core/Src/main.c:92:6:blinkThread	1
+../Core/Src/main.c:99:6:delayThread	6
+../Core/Src/main.c:124:6:HAL_GPIO_EXTI_Callback	2
+../Core/Src/main.c:133:6:SystemClock_Config	4
+../Core/Src/main.c:183:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:218:13:MX_GPIO_Init	1
+../Core/Src/main.c:267:6:vApplicationStackOverflowHook	1
+../Core/Src/main.c:277:6:Error_Handler	1

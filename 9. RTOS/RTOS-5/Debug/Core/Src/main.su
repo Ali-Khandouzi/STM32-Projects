@@ -1,0 +1,9 @@
+../Core/Src/main.c:63:5:main	8	static
+../Core/Src/main.c:92:6:blinkThread	16	static
+../Core/Src/main.c:99:6:delayThread	24	static
+../Core/Src/main.c:124:6:HAL_GPIO_EXTI_Callback	16	static
+../Core/Src/main.c:133:6:SystemClock_Config	96	static
+../Core/Src/main.c:183:13:MX_USART2_UART_Init	8	static
+../Core/Src/main.c:218:13:MX_GPIO_Init	48	static
+../Core/Src/main.c:267:6:vApplicationStackOverflowHook	16	static,ignoring_inline_asm
+../Core/Src/main.c:277:6:Error_Handler	4	static,ignoring_inline_asm

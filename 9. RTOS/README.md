@@ -19,3 +19,24 @@
 	We can also check if the queue works if we pass several delay. For this purpose, if we specify a large delay value like 10000, the consumer runs slower than the producer.
 	We can then immediately put another delay value inside the queue. The frequency changes after 10 sec and we can see the new LED starts blinking at new rate, since blinkThread() is blocked by the osDelay() function.
 	"./Videos/RTOS-3-2.mp4".
+
+	RTOS-4
+	In this example instead of queue, we use a semaphore to control the access of threads. 
+	This is again the classical blinking application, but this time the delay of the blinkThread() is established by another thread, delayThread(), which “unlock” the blinking thread by releasing a binary semaphore. 
+	First, we create a binary semaphore with ID semiID. The semaphore is immediately acquired after creation by osSemaphoreAcquire(semID, osWaitForever) in the main code, causing its counter to become equal to zero.
+	The blinkThread() and delayThread() are scheduled, but the blinkThread() is placed in blocked state as soon as it reaches the osSemaphoreAcquire() in its function.
+	Being the semaphore already “acquired”, the thread will be swapped to the delayThread() until it release the semaphore by osSemaphoreRelease(semID), which performs this operation every 500ms.
+	This will cause the LD2 LED to blink at a 2Hz rate.
+
+	RTOS-5
+	
+	
+
+
+
+
+
+
+
+
+
