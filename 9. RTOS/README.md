@@ -39,7 +39,22 @@
 	Software timers are the way an RTOS provides to schedule the execution of routines on a time-basis.
 	There is no need to specific hardware support for software timers, except for the timer used as tick generator for the OS.
 
+	RTOS-8
+	When threads are spawned dynamically, it is hard to keep track of their lifecycle. FreeRTOS provides a way to retrieve both the complete list of live threads and some relevant information regarding their status.
+	The uxTaskGetNumberOfTasks() function returns the number of live threads and the uxTaskGetSystemState() function returns the status information of every thread in the system.
+	The uxTaskGetSystemState() for each thread, accepts  the maximum number of elements that the array can hold (uxArraySize) and a pointer to a variable (pulTotalRunTime) that will contain the total run-time since the kernel started.
+	This means that, FreeRTOS can collect information on the amount of processing time that has been used by each thread.
+	We need to enable the configGENERATE_RUN_TIME_STATS macro in the FreeRTOSConfig.h for this matter. 
+	Moreover, since this feature requires that we use another timer different from the one used to feed the tick counter, we use TIM3 as tick generator.
+	This because the run-time statistics timebase needs to have a higher resolution than the tick interrupt, otherwise the statistics may be too inaccurate to be truly useful.
+	When the configGENERATE_RUN_TIME_STATS macro is set to 1, we have to provide two additional macros. The first one, portCONFIGURE_TIMER_FOR_RUN_TIME_STATS(), is used to setup the timer needed for run-time statistics. 
+	The second one, portGET_RUN_TIME_COUNTER_VALUE(), is used by FreeRTOS to retrieve the cumulative value of the timer counter. These two macos are also defined in the FreeRTOSConfig.h.
 	
+	We have two main thread in the code. The first one is the typical blinkthread and the otherone called threadsDumpThread() is use to collect and print the information through the UART on Nucleo VCP.
+	The threadsDumpThread() works this way: When the USER button is pressed, its allocates a buffer (pxTaskStatusArray) that will contain the TaskStatus_t structures for each thread in the system.
+	The uxTaskGetSystemState() populates this array, and for each thread contained in it some statistics are get printed.
+	The information inculeds the threads name and IDs (even the idle threads are shown), status(blocked, running, ready), Priority, Runtime and Runtime in percentage. 
+	As it shown in the "./Videos/RTOS-8.mp4".
 
 
 
