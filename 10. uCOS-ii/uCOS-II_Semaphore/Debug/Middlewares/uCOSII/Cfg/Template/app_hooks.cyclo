@@ -1,0 +1,8 @@
+../Middlewares/uCOSII/Cfg/Template/app_hooks.c:107:7:App_TaskCreateHook	1
+../Middlewares/uCOSII/Cfg/Template/app_hooks.c:125:7:App_TaskDelHook	1
+../Middlewares/uCOSII/Cfg/Template/app_hooks.c:145:7:App_TaskIdleHook	1
+../Middlewares/uCOSII/Cfg/Template/app_hooks.c:162:7:App_TaskStatHook	1
+../Middlewares/uCOSII/Cfg/Template/app_hooks.c:182:7:App_TaskReturnHook	1
+../Middlewares/uCOSII/Cfg/Template/app_hooks.c:207:7:App_TaskSwHook	1
+../Middlewares/uCOSII/Cfg/Template/app_hooks.c:228:7:App_TCBInitHook	1
+../Middlewares/uCOSII/Cfg/Template/app_hooks.c:248:7:App_TimeTickHook	1
