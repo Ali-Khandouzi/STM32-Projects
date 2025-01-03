@@ -1,0 +1,14 @@
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:117:7:OSInitHookBegin	24	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:168:7:OSInitHookEnd	4	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:187:7:OSTaskCreateHook	16	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:210:7:OSTaskDelHook	16	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:234:7:OSTaskIdleHook	8	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:257:7:OSTaskReturnHook	16	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:280:7:OSTaskStatHook	8	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:469:10:OSTaskStkInit	32	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:567:7:OSTaskSwHook	8	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:599:7:OSTCBInitHook	16	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:622:7:OSTimeTickHook	8	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:652:7:OS_CPU_SysTickHandler	16	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:683:7:OS_CPU_SysTickInitFreq	24	static
+../Middlewares/uCOSII/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu_c.c:708:7:OS_CPU_SysTickInit	24	static

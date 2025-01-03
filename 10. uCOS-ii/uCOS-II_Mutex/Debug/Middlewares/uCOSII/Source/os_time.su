@@ -1,0 +1,5 @@
+../Middlewares/uCOSII/Source/os_time.c:57:7:OSTimeDly	24	static
+../Middlewares/uCOSII/Source/os_time.c:115:8:OSTimeDlyHMSM	32	static
+../Middlewares/uCOSII/Source/os_time.c:179:8:OSTimeDlyResume	24	static
+../Middlewares/uCOSII/Source/os_time.c:241:9:OSTimeGet	16	static
+../Middlewares/uCOSII/Source/os_time.c:271:7:OSTimeSet	24	static

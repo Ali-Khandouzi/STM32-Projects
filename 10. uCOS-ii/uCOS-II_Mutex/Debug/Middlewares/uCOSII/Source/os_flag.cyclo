@@ -1,0 +1,13 @@
+../Middlewares/uCOSII/Source/os_flag.c:101:11:OSFlagAccept	16
+../Middlewares/uCOSII/Source/os_flag.c:226:15:OSFlagCreate	3
+../Middlewares/uCOSII/Source/os_flag.c:318:15:OSFlagDel	10
+../Middlewares/uCOSII/Source/os_flag.c:449:8:OSFlagNameGet	5
+../Middlewares/uCOSII/Source/os_flag.c:520:7:OSFlagNameSet	5
+../Middlewares/uCOSII/Source/os_flag.c:620:11:OSFlagPend	24
+../Middlewares/uCOSII/Source/os_flag.c:820:11:OSFlagPendGetFlagsRdy	1
+../Middlewares/uCOSII/Source/os_flag.c:877:11:OSFlagPost	19
+../Middlewares/uCOSII/Source/os_flag.c:1017:11:OSFlagQuery	3
+../Middlewares/uCOSII/Source/os_flag.c:1090:15:OS_FlagBlock	3
+../Middlewares/uCOSII/Source/os_flag.c:1142:7:OS_FlagInit	2
+../Middlewares/uCOSII/Source/os_flag.c:1209:18:OS_FlagTaskRdy	2
+../Middlewares/uCOSII/Source/os_flag.c:1256:7:OS_FlagUnlink	4

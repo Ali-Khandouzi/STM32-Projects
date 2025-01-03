@@ -1,0 +1,7 @@
+../Middlewares/uCOSII/Source/os_mutex.c:93:10:OSMutexAccept	24	static
+../Middlewares/uCOSII/Source/os_mutex.c:187:12:OSMutexCreate	24	static
+../Middlewares/uCOSII/Source/os_mutex.c:301:12:OSMutexDel	48	static
+../Middlewares/uCOSII/Source/os_mutex.c:467:7:OSMutexPend	48	static
+../Middlewares/uCOSII/Source/os_mutex.c:642:8:OSMutexPost	24	static
+../Middlewares/uCOSII/Source/os_mutex.c:727:8:OSMutexQuery	32	static
+../Middlewares/uCOSII/Source/os_mutex.c:787:15:OSMutex_RdyAtPrio	24	static
