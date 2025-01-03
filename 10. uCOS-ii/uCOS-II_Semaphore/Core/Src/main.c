@@ -113,6 +113,7 @@ void task2(void* pdata) {
 	int t_end;
 	int t_prev = 0;
 	while (1) {
+		t_start = OSTimeGet();
 		char text2[] = "Second 2\r\n";
 		int i;
 		OSSemPend(Semaphore1, 0, &errorcode);

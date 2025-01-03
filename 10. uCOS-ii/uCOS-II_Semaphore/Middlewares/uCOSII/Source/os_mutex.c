@@ -31,7 +31,7 @@
 #define  MICRIUM_SOURCE
 
 #ifndef  OS_MASTER_FILE
-//#include <ucos_ii.h>
+#include <ucos_ii.h>
 #endif
 
 
