@@ -1,0 +1,8 @@
+../Middlewares/uCOSII/Source/os_sem.c:59:9:OSSemAccept	4
+../Middlewares/uCOSII/Source/os_sem.c:104:12:OSSemCreate	4
+../Middlewares/uCOSII/Source/os_sem.c:187:12:OSSemDel	10
+../Middlewares/uCOSII/Source/os_sem.c:323:7:OSSemPend	8
+../Middlewares/uCOSII/Source/os_sem.c:441:8:OSSemPendAbort	6
+../Middlewares/uCOSII/Source/os_sem.c:515:8:OSSemPost	5
+../Middlewares/uCOSII/Source/os_sem.c:576:8:OSSemQuery	5
+../Middlewares/uCOSII/Source/os_sem.c:638:7:OSSemSet	5

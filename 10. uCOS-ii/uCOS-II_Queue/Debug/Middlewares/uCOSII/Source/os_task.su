@@ -1,0 +1,16 @@
+../Middlewares/uCOSII/Source/os_task.c:61:8:OSTaskChangePrio	40	static
+../Middlewares/uCOSII/Source/os_task.c:220:8:OSTaskCreate	56	static
+../Middlewares/uCOSII/Source/os_task.c:348:8:OSTaskCreateExt	56	static
+../Middlewares/uCOSII/Source/os_task.c:451:8:OSTaskDel	32	static
+../Middlewares/uCOSII/Source/os_task.c:614:8:OSTaskDelReq	32	static
+../Middlewares/uCOSII/Source/os_task.c:689:8:OSTaskNameGet	40	static
+../Middlewares/uCOSII/Source/os_task.c:771:7:OSTaskNameSet	32	static
+../Middlewares/uCOSII/Source/os_task.c:847:8:OSTaskResume	24	static
+../Middlewares/uCOSII/Source/os_task.c:917:8:OSTaskStkChk	40	static
+../Middlewares/uCOSII/Source/os_task.c:1003:8:OSTaskSuspend	32	static
+../Middlewares/uCOSII/Source/os_task.c:1079:8:OSTaskQuery	24	static
+../Middlewares/uCOSII/Source/os_task.c:1147:9:OSTaskRegGet	32	static
+../Middlewares/uCOSII/Source/os_task.c:1210:8:OSTaskRegGetID	24	static
+../Middlewares/uCOSII/Source/os_task.c:1270:7:OSTaskRegSet	32	static
+../Middlewares/uCOSII/Source/os_task.c:1328:7:OS_TaskReturn	8	static
+../Middlewares/uCOSII/Source/os_task.c:1365:7:OS_TaskStkClr	24	static

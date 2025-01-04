@@ -1,0 +1,11 @@
+../Middlewares/uCOSII/Source/os_q.c:70:8:OSQAccept	32	static
+../Middlewares/uCOSII/Source/os_q.c:136:12:OSQCreate	32	static
+../Middlewares/uCOSII/Source/os_q.c:241:12:OSQDel	40	static
+../Middlewares/uCOSII/Source/os_q.c:372:8:OSQFlush	24	static
+../Middlewares/uCOSII/Source/os_q.c:436:8:OSQPend	40	static
+../Middlewares/uCOSII/Source/os_q.c:564:8:OSQPendAbort	32	static
+../Middlewares/uCOSII/Source/os_q.c:641:8:OSQPost	24	static
+../Middlewares/uCOSII/Source/os_q.c:712:8:OSQPostFront	24	static
+../Middlewares/uCOSII/Source/os_q.c:792:8:OSQPostOpt	32	static
+../Middlewares/uCOSII/Source/os_q.c:876:8:OSQQuery	40	static
+../Middlewares/uCOSII/Source/os_q.c:936:7:OS_QInit	24	static

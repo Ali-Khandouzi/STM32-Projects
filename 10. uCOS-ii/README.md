@@ -17,4 +17,6 @@
 	There are two tasks in this example and both want to use UART to send their messages. UART is a shared resource then and most be protected.
 	If the higher priority task preempt lower priority task in the middle of its job, this preemption more likely lead to data corroption.
 	To avoid that, we can use semaphores. A semaphore can act like a key, each task who acquires it can get executed and a preemption not going to ruin data, since the higher priority task must accure the kei first.
-	And the must release from the previous task. That's how it works! Hope I explain it well! (I know I didn't).
+	And the must release from the previous task. That's how it works! Hope I explain it well!
+
+	uCOS-II_Mutex

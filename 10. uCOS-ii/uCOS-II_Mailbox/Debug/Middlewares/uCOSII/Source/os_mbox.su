@@ -1,0 +1,8 @@
+../Middlewares/uCOSII/Source/os_mbox.c:56:8:OSMboxAccept	24	static
+../Middlewares/uCOSII/Source/os_mbox.c:98:12:OSMboxCreate	24	static
+../Middlewares/uCOSII/Source/os_mbox.c:179:12:OSMboxDel	40	static
+../Middlewares/uCOSII/Source/os_mbox.c:317:8:OSMboxPend	32	static
+../Middlewares/uCOSII/Source/os_mbox.c:440:8:OSMboxPendAbort	32	static
+../Middlewares/uCOSII/Source/os_mbox.c:520:8:OSMboxPost	24	static
+../Middlewares/uCOSII/Source/os_mbox.c:599:8:OSMboxPostOpt	32	static
+../Middlewares/uCOSII/Source/os_mbox.c:672:8:OSMboxQuery	32	static
