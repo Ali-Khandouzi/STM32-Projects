@@ -13,10 +13,10 @@
 	It's a simple project, a task just blink a LED and the other sending message using UART.
 	
 	uCOS-II_Semaphore
-	In this example, we learn how to create semaphore using uCOS-II.
-	There are two tasks in this example and both want to use UART to send their messages. UART is a shared resource then and most be protected.
-	If the higher priority task preempt lower priority task in the middle of its job, this preemption more likely lead to data corroption.
-	To avoid that, we can use semaphores. A semaphore can act like a key, each task who acquires it can get executed and a preemption not going to ruin data, since the higher priority task must accure the kei first.
-	And the must release from the previous task. That's how it works! Hope I explain it well!
+	In this example, we learn how to create a semaphore using uCOS-II.
+	There are two tasks in this example and both want to use UART to send their messages. UART is a shared resource then and must be protected.
+	If the higher priority task preempts the lower priority task in the middle of its job, this preemption is more likely to lead to data corroption.
+	To avoid that, we can use semaphores. A semaphore can act like a key. Each task that acquires it can be executed and a preemption not going to ruin data, since the higher priority task must acquire the key first.
+	And they must be released from the previous task. That's how it works! Hope I explain it well!
 
 	uCOS-II_Mutex
