@@ -118,7 +118,6 @@ int main(void)
 
     OSStart();
     return 0;
-
 }
 
 /* Definition of Task1 ----------------------------------------------------------- */

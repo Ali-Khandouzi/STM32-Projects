@@ -808,7 +808,6 @@ int main(void)
  8000760:	f003 fd54 	bl	800420c <OSStart>
     return 0;
  8000764:	2300      	movs	r3, #0
-
 }
  8000766:	4618      	mov	r0, r3
  8000768:	46bd      	mov	sp, r7

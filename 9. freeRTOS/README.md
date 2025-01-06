@@ -21,7 +21,7 @@
 	"./Videos/RTOS-3-2.mp4".
 
 	RTOS-4
-	In this example instead of queue, we use a semaphore to control the access of threads. 
+	In this example, we use a semaphore to control the access of threads. 
 	This is again the classical blinking application, but this time the delay of the blinkThread() is established by another thread, delayThread(), which “unlock” the blinking thread by releasing a binary semaphore. 
 	First, we create a binary semaphore with ID semiID. The semaphore is immediately acquired after creation by osSemaphoreAcquire(semID, osWaitForever) in the main code, causing its counter to become equal to zero.
 	The blinkThread() and delayThread() are scheduled, but the blinkThread() is placed in blocked state as soon as it reaches the osSemaphoreAcquire() in its function.
