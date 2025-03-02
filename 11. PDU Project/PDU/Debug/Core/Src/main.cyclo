@@ -1,0 +1,13 @@
+../Core/Src/main.c:109:5:main	2
+../Core/Src/main.c:193:6:TaskTransmit	5
+../Core/Src/main.c:233:6:TaskReceive	31
+../Core/Src/main.c:470:6:TaskButton	4
+../Core/Src/main.c:509:10:LEDBlink	2
+../Core/Src/main.c:500:6:TaskLED	5
+../Core/Src/main.c:574:6:TaskADC	5
+../Core/Src/main.c:640:6:HAL_GPIO_EXTI_Callback	2
+../Core/Src/main.c:646:6:SystemClock_Config	4
+../Core/Src/main.c:696:13:MX_ADC3_Init	3
+../Core/Src/main.c:735:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:756:13:MX_GPIO_Init	1
+../Core/Src/main.c:793:6:Error_Handler	1

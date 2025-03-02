@@ -1,0 +1,8 @@
+../Middlewares/uCOSII/Source/os_sem.c:59:9:OSSemAccept	24	static
+../Middlewares/uCOSII/Source/os_sem.c:104:12:OSSemCreate	24	static
+../Middlewares/uCOSII/Source/os_sem.c:187:12:OSSemDel	40	static
+../Middlewares/uCOSII/Source/os_sem.c:323:7:OSSemPend	32	static
+../Middlewares/uCOSII/Source/os_sem.c:441:8:OSSemPendAbort	32	static
+../Middlewares/uCOSII/Source/os_sem.c:515:8:OSSemPost	24	static
+../Middlewares/uCOSII/Source/os_sem.c:576:8:OSSemQuery	32	static
+../Middlewares/uCOSII/Source/os_sem.c:638:7:OSSemSet	32	static

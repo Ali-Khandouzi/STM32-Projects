@@ -1,0 +1,11 @@
+../Middlewares/uCOSII/Source/os_q.c:70:8:OSQAccept	5
+../Middlewares/uCOSII/Source/os_q.c:136:12:OSQCreate	5
+../Middlewares/uCOSII/Source/os_q.c:241:12:OSQDel	10
+../Middlewares/uCOSII/Source/os_q.c:372:8:OSQFlush	3
+../Middlewares/uCOSII/Source/os_q.c:436:8:OSQPend	9
+../Middlewares/uCOSII/Source/os_q.c:564:8:OSQPendAbort	6
+../Middlewares/uCOSII/Source/os_q.c:641:8:OSQPost	6
+../Middlewares/uCOSII/Source/os_q.c:712:8:OSQPostFront	6
+../Middlewares/uCOSII/Source/os_q.c:792:8:OSQPostOpt	11
+../Middlewares/uCOSII/Source/os_q.c:876:8:OSQQuery	6
+../Middlewares/uCOSII/Source/os_q.c:936:7:OS_QInit	2

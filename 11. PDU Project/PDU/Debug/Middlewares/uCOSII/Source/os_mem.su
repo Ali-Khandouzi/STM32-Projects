@@ -1,0 +1,7 @@
+../Middlewares/uCOSII/Source/os_mem.c:70:10:OSMemCreate	48	static
+../Middlewares/uCOSII/Source/os_mem.c:171:8:OSMemGet	24	static
+../Middlewares/uCOSII/Source/os_mem.c:235:8:OSMemNameGet	32	static
+../Middlewares/uCOSII/Source/os_mem.c:300:7:OSMemNameSet	32	static
+../Middlewares/uCOSII/Source/os_mem.c:358:8:OSMemPut	24	static
+../Middlewares/uCOSII/Source/os_mem.c:411:8:OSMemQuery	24	static
+../Middlewares/uCOSII/Source/os_mem.c:456:7:OS_MemInit	16	static
