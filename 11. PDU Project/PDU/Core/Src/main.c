@@ -194,7 +194,7 @@ void TaskTransmit(void *pdata) {
 	HAL_StatusTypeDef hal_status;
 	PDU *pdu_rx;
 	INT8U err;
-	printf("Task Transmit start\r\n");
+	//printf("Task Transmit start\r\n");
     while (1) {
     	// Wait for a PDU from the queue
         pdu_rx = (PDU *)OSQPend(tx_queue, 0, &err);
@@ -239,8 +239,6 @@ void TaskReceive(void* pdata) {
 	HAL_StatusTypeDef hal_status;
 	PDU pdu_tx;
 
-	printf("TaskReceive started\r\n"); // Debug print
-
 	while (1) {
 		// Handle input based on current state
 		switch (current_state) {
@@ -256,7 +254,7 @@ void TaskReceive(void* pdata) {
 				}
 
 				OSTimeDlyHMSM(0, 0, 5, 0); // Delay for 1 second
-				printf("Received character: %c\r\n", rx_buffer[rx_index]); // Debug print
+				//printf("Received character: %c\r\n", rx_buffer[rx_index]); // Debug print
 
 				// Process menu choice
 				if (rx_buffer[rx_index] >= '0' && rx_buffer[rx_index] <= '9') {
@@ -271,18 +269,6 @@ void TaskReceive(void* pdata) {
 							// Reset buffer and index
 							rx_index = 0;
 							memset(rx_buffer, 0, sizeof(rx_buffer));
-							// Display LED frequency options
-							//const char *led_freq_options = "Choose LED blink frequency:\r\n";
-														   //"1. 200 ms\r\n"
-														   //"2. 500 ms\r\n"
-														   //"3. 900 ms\r\n"
-														   //"Enter your choice (1, 2, or 3): ";
-							//hal_status = HAL_UART_Transmit(&huart2, (uint8_t*)led_freq_options, strlen(led_freq_options), HAL_MAX_DELAY);
-							//if (hal_status != HAL_OK) {
-							//	Error_Handler();
-							//}
-							//OSTimeDlyHMSM(0, 0, 30, 0); // Delay for 1 second
-
 							break;
 
 						case 2:
@@ -371,9 +357,9 @@ void TaskReceive(void* pdata) {
 					memset(pdu_tx.data, 0, sizeof(pdu_tx.data)); // Clear previous data
 					//printf("Data cleared");
 					memcpy(pdu_tx.data, &frequency, sizeof(frequency)); // Store frequency in PDU payload
-					printf("LED PDU prepared!\r\n");
+					//printf("LED PDU prepared!\r\n");
 					OSFlagPost(event_flags, LED_EVENT, OS_FLAG_SET, &err); // Trigger LED blink
-					printf("LED Flag Post! \r\n");
+					//printf("LED Flag Post! \r\n");
 					if (err != OS_ERR_NONE) {
 						Error_Handler();
 					}
@@ -384,15 +370,15 @@ void TaskReceive(void* pdata) {
 						printf("Error posting to queue: %d\r\n", err);
 						Error_Handler();
 					}
-					printf("Receive task Queue post no err\r\n");
+					//printf("Receive task Queue post no err\r\n");
 
 					OSTimeDlyHMSM(0, 1, 0, 0);
-					printf("Post 1");
+					//printf("Post 1");
 					// Reset state and buffer
 					current_state = STATE_MAIN_MENU;
 					rx_index = 0;
 					memset(rx_buffer, 0, sizeof(rx_buffer));
-					printf("Returned to MAIN MENU\r\n"); // Debug print
+					//printf("Returned to MAIN MENU\r\n"); // Debug print
 				}
 				break;
 
@@ -421,14 +407,14 @@ void TaskReceive(void* pdata) {
 					}
 					// Set LED frequency
 					pdu_tx.header = PDU_HEADER;
-					printf("Header added");
+					//printf("Header added");
 					pdu_tx.sid = SID_ADC_READ;
-					printf("SID added");
+					//printf("SID added");
 					memset(pdu_tx.data, 0, sizeof(pdu_tx.data)); // Clear previous data
-					printf("Data cleared");
+					//printf("Data cleared");
 					pdu_tx.data[0] = 2;  // Payload Type 2 (send ADC value)
 					memcpy(&pdu_tx.data[1], &offset, sizeof(offset)); // Store offset in PDU payload
-					printf("Copy handled, sent offset = %d\r\n", offset);
+					//printf("Copy handled, sent offset = %d\r\n", offset);
 					OSFlagPost(event_flags, ADC_EVENT, OS_FLAG_SET, &err); // Trigger ADC read
 					if (err != OS_ERR_NONE) {
 						Error_Handler();
@@ -441,14 +427,14 @@ void TaskReceive(void* pdata) {
 						printf("Error posting to queue: %d\r\n", err);
 						Error_Handler();
 					}
-					printf("Receive task Queue post no err \r\n");
+					//printf("Receive task Queue post no err \r\n");
 					OSTimeDlyHMSM(0, 1, 0, 0);
 					//printf("Post 1");
 					// Reset state and buffer
 					current_state = STATE_MAIN_MENU;
 					rx_index = 0;
 					memset(rx_buffer, 0, sizeof(rx_buffer));
-					printf("Returned to MAIN MENU\r\n"); // Debug print
+					//printf("Returned to MAIN MENU\r\n"); // Debug print
 				} else {
 					// Invalid input: Send negative response
 					printf("Invalid input\r\n"); // Debug print
@@ -468,10 +454,10 @@ void TaskReceive(void* pdata) {
 }
 /* Button Event Task ----------------------------------------------------------------*/
 void TaskButton(void *pdata) {
-	PDU pdu_tx = {PDU_HEADER, SID_POS_RESPONSE, {0}};
+	PDU pdu_tx = {PDU_HEADER, SID_BUTTON_EVENT, {0}};
 	INT8U err;
 	OS_FLAGS flags;
-	printf("Task Button\r\n");
+	//printf("Task Button\r\n");
 
 	while (1) {
 		// Wait for BUTTON_EVENT (button press)
@@ -482,28 +468,49 @@ void TaskButton(void *pdata) {
 
 		if (flags & BUTTON_EVENT) {
 			// Process Event
-			//const char msg[30] = "The Button is Pressed!\r\n";
-			//HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
 			printf("Button: The push button is pressed!\r\n");
+			OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
 
-			// Send Positive Response
+			pdu_tx.sid = SID_BUTTON_EVENT;
+
+			// Send Button Response
 			err = OSQPost(tx_queue, (void*)&pdu_tx); // Post to transmit queue
 			if (err != OS_ERR_NONE) {
 				Error_Handler();
 			}
+
+			OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
+			// Prepare PDU sending Pos response
+			pdu_tx.sid = SID_POS_RESPONSE;
+			memset(pdu_tx.data, 0, sizeof(pdu_tx.data)); // Clear previous data
+			//printf("Prepare PDU Positive response\r\n");
+
+			// Send PDU
+			err = OSQPost(tx_queue, (void*)&pdu_tx); // Post to transmit queue
+			if (err != OS_ERR_NONE) {
+				printf("Error! Button Positive response task sends Queue\r\n");
+				Error_Handler();
+			}
+			//printf("Button Positive response sends Queue\r\n");
+			OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
+
 			OSFlagPost(event_flags, BUTTON_EVENT, OS_FLAG_CLR, &err); // Manually clear the flag
+			current_state = STATE_MAIN_MENU; // Return to main menu
+			//printf("MAIN MENU start\r\n"); // Debug print
+			// Send Welcome Message
+			HAL_UART_Transmit(&huart2, (uint8_t*)welcome_message, strlen(welcome_message), HAL_MAX_DELAY);
 		}
 	}
 }
 
 /* LED_Blink Task -------------------------------------------------------------------*/
 void TaskLED(void *pdata) {
-    PDU pdu_tx = {PDU_HEADER, SID_POS_RESPONSE, {0}}; //???????
+    PDU pdu_tx = {PDU_HEADER, SID_LED_BLINK, {0}};
     PDU *pdu_rx;
     INT8U err;
     OS_FLAGS flags;
     uint16_t blink_frequency;
-    printf("Task LED\r\n");
+    //printf("Task LED\r\n");
 
     // LED Blink Function
     void LEDBlink(INT32U blink_frequency_ms) {
@@ -542,7 +549,7 @@ void TaskLED(void *pdata) {
 				printf("LED receive queue error\r\n");
 				Error_Handler();
 			}
-			printf("LED received the queue\r\n");
+			//printf("LED received the queue\r\n");
 
 			// Extract frequency from PDU payload
 			memcpy(&blink_frequency, pdu_rx->data, sizeof(blink_frequency));
@@ -551,21 +558,34 @@ void TaskLED(void *pdata) {
             // Blink LED
 			LEDBlink(blink_frequency);
 			printf("Payane blink\r\n");
+			pdu_tx.sid = SID_LED_BLINK;
 			pdu_tx.data[0] = 0x01; // Example payload
 
-            // Send Positive Response
+            // Send LED Response
 			err = OSQPost(tx_queue, (void *)&pdu_tx);
             if (err != OS_ERR_NONE) {
 				printf("Error posting to queue: %d\r\n", err);
 				Error_Handler();
 			}
+            //printf("LED Queue post no err\r\n");
+            OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
 
-            printf("LED Queue post no err\r\n");
-            OSTimeDlyHMSM(0, 0, 1, 0); // Delay for 1 second
+            // Prepare PDU sending Pos response
+			pdu_tx.sid = SID_POS_RESPONSE;
+			memset(pdu_tx.data, 0, sizeof(pdu_tx.data)); // Clear previous data
+			//printf("Prepare PDU Positive response\r\n");
+
+			// Send PDU
+			err = OSQPost(tx_queue, (void*)&pdu_tx); // Post to transmit queue
+			if (err != OS_ERR_NONE) {
+				printf("Error! LED Positive response task sends Queue\r\n");
+				Error_Handler();
+			}
+			//printf("LED Positive response sends Queue\r\n");
+			OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
+
             OSFlagPost(event_flags, LED_EVENT, OS_FLAG_CLR, &err); // Manually clear the flag
-            printf("LED Clear flag\r\n");
-            //current_state = STATE_MAIN_MENU; // Return to main menu
-            //printf("Akhar e LED\r\n");
+            //printf("LED Clear flag\r\n");
         }
     }
 }
@@ -579,12 +599,12 @@ void TaskADC(void *pdata) {
     PDU pdu_tx;
     PDU *pdu_rx;
     INT8U err;
-    printf("Task ADC\r\n");
+    //printf("Task ADC\r\n");
 
     while (1) {
         // Wait for ADC_EVENT
         flags = OSFlagPend(event_flags, ADC_EVENT, OS_FLAG_WAIT_SET_ALL, 0, &err);
-        printf("Pend happened ADC\r\n");
+        //printf("Pend happened ADC\r\n");
         if (err != OS_ERR_NONE) {
 			Error_Handler();
 		}
@@ -609,30 +629,47 @@ void TaskADC(void *pdata) {
 				printf("ADC receive queue error\r\n");
 				Error_Handler();
 			}
-			printf("ADC received the queue\r\n");
+			//printf("ADC received the queue\r\n");
 
 			// Extract frequency from PDU payload
 			memcpy(&offset, &pdu_rx->data[1], sizeof(offset));
 			printf("Offset = %d\r\n", offset);
 			temp = temp + offset;
 			printf("temp + offset = %f\r\n", temp);
+
 			// Prepare PDU with ADC Value
             pdu_tx.header = PDU_HEADER;
-            pdu_tx.sid = SID_POS_RESPONSE;
+            pdu_tx.sid = SID_ADC_READ;
             pdu_tx.data[0] = 2;  // Payload Type 2 (send ADC value)
 
             memcpy(&pdu_tx.data[1], &temp, sizeof(temp));  // Store temp in payload
-            printf("ADC task make PDU\r\n");
-
+            //printf("ADC task make PDU\r\n");
+            OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
             // Send PDU
             err = OSQPost(tx_queue, (void*)&pdu_tx); // Post to transmit queue
             if (err != OS_ERR_NONE) {
             	printf("Error! ADC task sends Queue\r\n");
 				Error_Handler();
 			}
-            printf("ADC task sends Queue\r\n");
+            //printf("ADC task sends Queue\r\n");
+            OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
+
+            // Prepare PDU sending Pos response
+			pdu_tx.sid = SID_POS_RESPONSE;
+			memset(pdu_tx.data, 0, sizeof(pdu_tx.data)); // Clear previous data
+			//printf("Prepare PDU Positive response\r\n");
+
+			// Send PDU
+			err = OSQPost(tx_queue, (void*)&pdu_tx); // Post to transmit queue
+			if (err != OS_ERR_NONE) {
+				printf("Error! ADC Positive response task sends Queue\r\n");
+				Error_Handler();
+			}
+			//printf("ADC Positive response sends Queue\r\n");
+			OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
+
             OSFlagPost(event_flags, ADC_EVENT, OS_FLAG_CLR, &err); // Manually clear the flag
-            OSTimeDlyHMSM(0, 0, 5, 0); // Delay for 1 second
+            OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1 second
         }
     }
 }
