@@ -243,6 +243,7 @@ void TaskReceive(void* pdata) {
 		// Handle input based on current state
 		switch (current_state) {
 			case STATE_MAIN_MENU:
+				OSTimeDlyHMSM(0, 0, 10, 0); // Delay for 1s
 				printf("MAIN MENU start\r\n"); // Debug print
 				// Send Welcome Message
 				HAL_UART_Transmit(&huart2, (uint8_t*)welcome_message, strlen(welcome_message), HAL_MAX_DELAY);
@@ -298,6 +299,10 @@ void TaskReceive(void* pdata) {
 							if (err != OS_ERR_NONE) {
 								Error_Handler();
 							}
+							// Reset state and re-display welcome message
+							current_state = STATE_MAIN_MENU;
+							rx_index = 0;
+							memset(rx_buffer, 0, sizeof(rx_buffer));
 							break;
 					}
 				} else {
@@ -308,6 +313,10 @@ void TaskReceive(void* pdata) {
 					if (err != OS_ERR_NONE) {
 						Error_Handler();
 					}
+					// Reset state and re-display welcome message
+					current_state = STATE_MAIN_MENU;
+					rx_index = 0;
+					memset(rx_buffer, 0, sizeof(rx_buffer));
 				}
 				break;
 
@@ -331,7 +340,7 @@ void TaskReceive(void* pdata) {
 						PDU neg_response_pdu = {PDU_HEADER, SID_NEG_RESPONSE, {0}};
 						err = OSQPost(tx_queue, (void*)&neg_response_pdu);
 						if (err != OS_ERR_NONE) {
-							printf("Error in sending neg response from receiveLEDfrequency! ");
+							printf("Error in sending neg response from receive LED frequency! ");
 							Error_Handler();
 						}
 
@@ -443,6 +452,10 @@ void TaskReceive(void* pdata) {
 					if (err != OS_ERR_NONE) {
 						Error_Handler();
 					}
+					// Reset state and re-display welcome message
+					current_state = STATE_MAIN_MENU;
+					rx_index = 0;
+					memset(rx_buffer, 0, sizeof(rx_buffer));
 				}
 				break;
 		}
